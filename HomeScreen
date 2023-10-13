@@ -1,0 +1,1071 @@
+import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:sizer/sizer.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int number = 0;
+  int numberB = 0;
+  int numberC = 0;
+  int totalNumber = 0;
+  List<String> sizeList = ['M', 'L', 'XL'];
+  List<String> colorList = ['Navy Blue', 'Grey', 'Black'];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+
+      body:OrientationLayoutBuilder(portrait: (context)=>Center(
+        child: Column(
+          children: [
+
+            const Flexible(child:  SizedBox(height: 30)),
+            Flexible(
+              child:  SizedBox(
+                height: 5.h,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Icon(Icons.search_sharp,size: 15.sp,),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Flexible(
+              child: SizedBox(
+                height: 18.h,
+                child: Row(
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.fitHeight,
+                        child: Text('My Bag',style: TextStyle(fontSize: 25.sp),)),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: SizedBox(
+                height: 360, ///360
+                width: 343, ///343
+                child: Flexible(
+                  child: Card(
+                    elevation: 3,
+                    child: Column(
+                      children: [
+                        ///Sizebox of fist card
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 17),
+                          child: Container(
+                              height: 104,
+                              width: 343,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                              child: Card(
+                                elevation: 8,
+                                child: Stack(
+                                  children: [
+                                    Image.network(
+                                        'https://smhttp-ssl-57489.nexcesscdn.net/media/catalog/product/cache/5/image/9df78eab33525d08d6e5fb8d27136e95/m/c/mc3802-main_2.jpg'),
+                                    Positioned(
+                                      ///Teal container
+                                      top: 50,
+                                      left: 72,
+                                      child: Container(
+                                        width: 255,
+                                        height: 50,
+                                        color: Colors.grey[50],
+                                        child: Stack(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(4.0),
+                                                  child: FloatingActionButton(
+                                                    onPressed: () {
+                                                      number--;
+                                                      if (number - 1 >= 0 &&
+                                                          number - 1 <= 100) {
+                                                        totalNumber -= 65;
+                                                      } else {
+                                                        totalNumber = 0;
+                                                      }
+                                                      setState(() {});
+                                                    },backgroundColor: Colors.white,
+                                                    child: const Icon(
+                                                      Icons.remove,
+                                                      size: 15,
+                                                      color: Colors.black87,
+                                                    ),),
+                                                ),
+                                                Text(
+                                                  ' $number ',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(4.0),
+                                                  child: FloatingActionButton(
+                                                    onPressed: () {
+                                                      number += 1;
+                                                      if (number + 1 >= 0 &&
+                                                          number + 1 <= 100) {
+                                                        totalNumber += 65;
+                                                      }
+                                                      if (number <= 0) {
+                                                        totalNumber = 0;
+                                                      }
+                                                      setState(() {});
+                                                    },backgroundColor: Colors.white,
+
+                                                    child: const Icon(
+                                                      Icons.add,
+                                                      size: 17,
+                                                      color: Colors.black87,
+                                                    ),),
+                                                ),
+                                              ],
+                                            ),
+                                            Positioned(
+                                                left: 215,
+                                                top: 10,
+                                                child: Container(
+                                                    width: 40,
+                                                    height: 25,
+                                                    color: Colors.grey[50],
+                                                    child: Text(
+                                                      '65\$',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleLarge,
+                                                    ))),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    /// Jubba Container
+                                    Positioned(
+                                      left: 72,
+                                      child: Container(
+                                        ///Yeallow container
+                                        width: 255,
+                                        height: 50,
+                                        color: Colors.white,
+                                        child: Stack(
+                                          children: [
+                                            Text(
+                                              'Jubba',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                            Positioned(
+                                                top: 30,
+                                                child: RichText(
+                                                  text: TextSpan(children: [
+                                                    const TextSpan(
+                                                        text: 'Color:',
+                                                        style: TextStyle(
+                                                            color: Colors.black45)),
+                                                    TextSpan(
+                                                        text: colorList.first,
+                                                        style: const TextStyle(
+                                                            color: Colors.black87))
+                                                  ]),
+                                                )),
+                                            Positioned(
+                                                top: 30,
+                                                left: 110,
+                                                child: RichText(
+                                                  text: TextSpan(children: [
+                                                    const TextSpan(
+                                                        text: 'Size:',
+                                                        style: TextStyle(
+                                                            color: Colors.black45)),
+                                                    TextSpan(
+                                                        text: sizeList.first,
+                                                        style: const TextStyle(
+                                                            color: Colors.black87))
+                                                  ]),
+                                                )),
+                                            const Positioned(
+                                                left: 226,
+                                                top: 10,
+                                                child: Icon(Icons.more_vert_outlined))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
+                        ///SizeBox of 2nd Card
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 17),
+                          child: SizedBox(
+                              height: 104,
+                              width: 343,
+                              child: Card(
+                                elevation: 8,
+
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: 100,
+                                      width: 80,
+                                      child: FittedBox(
+                                        fit: BoxFit.fill,
+                                        child: Image.network(
+                                            'https://miah.shop/_next/image?url=https%3A%2F%2Fimages.miah.shop%2Fproduct%2F%2FPanjabi_8_(1).jpg&w=1920&q=75'),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      ///Teal container
+                                      top: 50,
+                                      left: 72,
+                                      child: Container(
+                                        width: 255,
+                                        height: 50,
+                                        color: Colors.grey[50],
+                                        child: Stack(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(4.0),
+                                                  child: FloatingActionButton(
+                                                    onPressed: () {
+                                                      numberB--;
+                                                      if (numberB - 1 >= 0 &&
+                                                          numberB - 1 <= 100) {
+                                                        totalNumber -= 45;
+                                                      } else {
+                                                        totalNumber = 0;
+                                                      }
+                                                      setState(() {});
+                                                    },backgroundColor: Colors.white,
+                                                    child: const Icon(
+                                                      Icons.remove,
+                                                      size: 15,
+                                                      color: Colors.black87,
+                                                    ),),
+                                                ),
+                                                Text(
+                                                  ' $numberB ',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(4.0),
+                                                  child: FloatingActionButton(
+                                                    onPressed: () {
+                                                      numberB += 1;
+                                                      if (numberB + 1 >= 0 &&
+                                                          numberB + 1 <= 100) {
+                                                        totalNumber += 45;
+                                                      }
+                                                      if (numberB <= 0) {
+                                                        totalNumber = 0;
+                                                      }
+                                                      setState(() {});
+                                                    },backgroundColor: Colors.white,
+
+                                                    child: const Icon(
+                                                      Icons.add,
+                                                      size: 17,
+                                                      color: Colors.black87,
+                                                    ),),
+                                                ),
+                                              ],
+                                            ),
+                                            Positioned(
+                                                left: 215,
+                                                top: 10,
+                                                child: Container(
+                                                    width: 40,
+                                                    height: 25,
+                                                    color: Colors.grey[50],
+                                                    child: Text(
+                                                      '45\$',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleLarge,
+                                                    ))),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    /// Panjabi Container
+                                    Positioned(
+                                      left: 72,
+                                      child: Container(
+                                        ///Yeallow container
+                                        width: 255,
+                                        height: 50,
+                                        color: Colors.white,
+                                        child: Stack(
+                                          children: [
+                                            Text(
+                                              'Panjabi',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                            Positioned(
+                                                top: 30,
+                                                child: RichText(
+                                                  text: TextSpan(children: [
+                                                    const TextSpan(
+                                                        text: 'Color:',
+                                                        style: TextStyle(
+                                                            color: Colors.black45)),
+                                                    TextSpan(
+                                                        text: ' ${colorList[1]}',
+                                                        style: const TextStyle(
+                                                            color: Colors.black87))
+                                                  ]),
+                                                )),
+                                            Positioned(
+                                                top: 30,
+                                                left: 110,
+                                                child: RichText(
+                                                  text: TextSpan(children: [
+                                                    const TextSpan(
+                                                        text: 'Size:',
+                                                        style: TextStyle(
+                                                            color: Colors.black45)),
+                                                    TextSpan(
+                                                        text: sizeList[1],
+                                                        style: const TextStyle(
+                                                            color: Colors.black87))
+                                                  ]),
+                                                )),
+                                            const Positioned(
+                                                left: 226,
+                                                top: 10,
+                                                child: Icon(Icons.more_vert_outlined))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
+                        /// sizeBox of 3rd Card
+                        SizedBox(
+                            height: 104,
+                            width: 343,
+                            child: Card(
+                              elevation: 8,
+                              child: Stack(
+                                children: [
+                                  SizedBox(
+                                    height: 96,
+                                    width: 80,
+                                    child: FittedBox(
+                                      fit: BoxFit.fill,
+                                      child: Image.network(
+                                          'https://believerssign.com/wp-content/uploads/2023/03/Kaftan-1.jpg'),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    ///Teal container
+                                    top: 50,
+                                    left: 72,
+                                    child: Container(
+                                      width: 255,
+                                      height: 50,
+                                      color: Colors.grey[50],
+                                      child: Stack(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(4.0),
+                                                child: FloatingActionButton(
+                                                  onPressed: () {
+                                                    numberC--;
+                                                    if (numberC - 1 >= 0 &&
+                                                        numberC - 1 <= 100) {
+                                                      totalNumber -= 80;
+                                                    } else {
+                                                      totalNumber = 0;
+                                                    }
+                                                    setState(() {});
+                                                  },backgroundColor: Colors.white,
+                                                  child: const Icon(
+                                                    Icons.remove,
+                                                    size: 15,
+                                                    color: Colors.black87,
+                                                  ),),
+                                              ),
+                                              Text(
+                                                ' $numberC ',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(4.0),
+                                                child: FloatingActionButton(
+                                                  onPressed: () {
+                                                    numberC += 1;  /// eta majher counting er jonno , ar if er ta condition er jonno
+                                                    if (numberC + 1 >= 0 &&      ///Ekhane NumberC ++ dele counting 2 kore increase hoy, but number +1 dele 1 kore bare.
+                                                        numberC + 1 <= 100) {
+                                                      totalNumber += 80;
+                                                    }
+                                                    if (numberC <= 0) {
+                                                      totalNumber = 0;
+                                                    }
+                                                    setState(() {});
+                                                  },backgroundColor: Colors.white,
+
+                                                  child: const Icon(
+                                                    Icons.add,
+                                                    size: 17,
+                                                    color: Colors.black87,
+                                                  ),),
+                                              ),
+                                            ],
+                                          ),
+                                          Positioned(
+                                              left: 215,
+                                              top: 10,
+                                              child: Container(
+                                                  width: 40,
+                                                  height: 25,
+                                                  color: Colors.grey[50],
+                                                  child: Text(
+                                                    '80\$',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleLarge,
+                                                  ))),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  /// Kaftan Borka
+                                  Positioned(
+                                    left: 72,
+                                    child: Container(
+                                      ///Yeallow container
+                                      width: 255,
+                                      height: 50,
+                                      color: Colors.white,
+                                      child: Stack(
+                                        children: [
+                                          Text(
+                                            'Kaftan Borka',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge,
+                                          ),
+                                          Positioned(
+                                              top: 30,
+                                              child: RichText(
+                                                text: TextSpan(children: [
+                                                  const TextSpan(
+                                                      text: 'Color:',
+                                                      style: TextStyle(
+                                                          color: Colors.black45)),
+                                                  TextSpan(
+                                                      text: colorList[2],
+                                                      style: const TextStyle(
+                                                          color: Colors.black87))
+                                                ]),
+                                              )),
+                                          Positioned(
+                                              top: 30,
+                                              left: 110,
+                                              child: RichText(
+                                                text: TextSpan(children: [
+                                                  const TextSpan(
+                                                      text: 'Size:',
+                                                      style: TextStyle(
+                                                          color: Colors.black45)),
+                                                  TextSpan(
+                                                      text: sizeList[2],
+                                                      style: const TextStyle(
+                                                          color: Colors.black87))
+                                                ]),
+                                              )),
+                                          const Positioned(
+                                              left: 226,
+                                              top: 10,
+                                              child: Icon(Icons.more_vert_outlined)),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Flexible(child /// Size box ke Flexible korle seta screen size kome gele box er size o chepe jay
+                : SizedBox(height: 50,)), ///gape area to amount area
+           ///totalAmount,Bag,Checkout
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 4),
+                  child: Text('Total Amount :',style: TextStyle(fontWeight: FontWeight.w300,fontSize: 17),),
+                ),
+                 const Flexible(child: SizedBox(width: 220,)),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: Text('$totalNumber\$',style: Theme.of(context).textTheme.titleLarge,),
+                ),
+
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16,left: 16,right: 16,top: 8),
+              child: SizedBox(
+                width: 343,
+                height: 50,
+                child: ElevatedButton(onPressed: (){
+                  const  snackBar= SnackBar(content: Text('Congratulations !'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },style: ElevatedButton.styleFrom(backgroundColor: const Color(0xffDB3022),shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
+                    child: const Text('CHECK OUT')),
+              ),
+            )
+          ],
+        ),
+      ),
+      landscape: (context)=>Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(width: 10,),
+
+            Padding(  ///Main Card
+              padding: const EdgeInsets.only(top: 10),
+              child: SizedBox(
+                height: 338,
+                width: 343,
+                child: Flexible(
+                  child: Card(
+                    elevation: 8,
+                    child: Column(
+                      children: [
+                        ///Sizebox of fist card
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 8),
+                          child: Container(
+                              height: 104,
+                              width: 343,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                              child: Card(
+                                elevation: 8,
+                                child: Stack(
+                                  children: [
+                                    Image.network(
+                                        'https://smhttp-ssl-57489.nexcesscdn.net/media/catalog/product/cache/5/image/9df78eab33525d08d6e5fb8d27136e95/m/c/mc3802-main_2.jpg'),
+                                    Positioned(
+                                      ///Teal container
+                                      top: 50,
+                                      left: 72,
+                                      child: Container(
+                                        width: 255,
+                                        height: 50,
+                                        color: Colors.grey[50],
+                                        child: Stack(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(4.0),
+                                                  child: FloatingActionButton(
+                                                    onPressed: () {
+                                                      number--;
+                                                      if (number - 1 >= 0 &&
+                                                          number - 1 <= 100) {
+                                                        totalNumber -= 65;
+                                                      } else {
+                                                        totalNumber = 0;
+                                                      }
+                                                      setState(() {});
+                                                    },backgroundColor: Colors.white,
+                                                    child: const Icon(
+                                                      Icons.remove,
+                                                      size: 15,
+                                                      color: Colors.black87,
+                                                    ),),
+                                                ),
+                                                Text(
+                                                  ' $number ',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(4.0),
+                                                  child: FloatingActionButton(
+                                                    onPressed: () {
+                                                      number += 1;
+                                                      if (number + 1 >= 0 &&
+                                                          number + 1 <= 100) {
+                                                        totalNumber += 65;
+                                                      }
+                                                      if (number <= 0) {
+                                                        totalNumber = 0;
+                                                      }
+                                                      setState(() {});
+                                                    },backgroundColor: Colors.white,
+
+                                                    child: const Icon(
+                                                      Icons.add,
+                                                      size: 17,
+                                                      color: Colors.black87,
+                                                    ),),
+                                                ),
+                                              ],
+                                            ),
+                                            Positioned(
+                                                left: 215,
+                                                top: 10,
+                                                child: Container(
+                                                    width: 40,
+                                                    height: 25,
+                                                    color: Colors.grey[50],
+                                                    child: Text(
+                                                      '65\$',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleLarge,
+                                                    ))),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    /// Jubba Container
+                                    Positioned(
+                                      left: 72,
+                                      child: Container(
+                                        ///Yeallow container
+                                        width: 255,
+                                        height: 50,
+                                        color: Colors.white,
+                                        child: Stack(
+                                          children: [
+                                            Text(
+                                              'Jubba',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                            Positioned(
+                                                top: 30,
+                                                child: RichText(
+                                                  text: TextSpan(children: [
+                                                    const TextSpan(
+                                                        text: 'Color:',
+                                                        style: TextStyle(
+                                                            color: Colors.black45)),
+                                                    TextSpan(
+                                                        text: colorList.first,
+                                                        style: const TextStyle(
+                                                            color: Colors.black87))
+                                                  ]),
+                                                )),
+                                            Positioned(
+                                                top: 30,
+                                                left: 110,
+                                                child: RichText(
+                                                  text: TextSpan(children: [
+                                                    const TextSpan(
+                                                        text: 'Size:',
+                                                        style: TextStyle(
+                                                            color: Colors.black45)),
+                                                    TextSpan(
+                                                        text: sizeList.first,
+                                                        style: const TextStyle(
+                                                            color: Colors.black87))
+                                                  ]),
+                                                )),
+                                            const Positioned(
+                                                left: 226,
+                                                top: 10,
+                                                child: Icon(Icons.more_vert_outlined))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
+                        ///SizeBox of 2nd Card
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: SizedBox(
+                              height: 104,
+                              width: 343,
+                              child: Card(
+                                elevation: 8,
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: 100,
+                                      width: 80,
+                                      child: FittedBox(
+                                        fit: BoxFit.fill,
+                                        child: Image.network(
+                                            'https://miah.shop/_next/image?url=https%3A%2F%2Fimages.miah.shop%2Fproduct%2F%2FPanjabi_8_(1).jpg&w=1920&q=75'),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      ///Teal container
+                                      top: 50,
+                                      left: 72,
+                                      child: Container(
+                                        width: 255,
+                                        height: 50,
+                                        color: Colors.grey[50],
+                                        child: Stack(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(4.0),
+                                                  child: FloatingActionButton(
+                                                    onPressed: () {
+                                                      numberB--;
+                                                      if (numberB - 1 >= 0 &&
+                                                          numberB - 1 <= 100) {
+                                                        totalNumber -= 45;
+                                                      } else {
+                                                        totalNumber = 0;
+                                                      }
+                                                      setState(() {});
+                                                    },backgroundColor: Colors.white,
+                                                    child: const Icon(
+                                                      Icons.remove,
+                                                      size: 15,
+                                                      color: Colors.black87,
+                                                    ),),
+                                                ),
+                                                Text(
+                                                  ' $numberB ',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(4.0),
+                                                  child: FloatingActionButton(
+                                                    onPressed: () {
+                                                      numberB += 1;
+                                                      if (numberB + 1 >= 0 &&
+                                                          numberB + 1 <= 100) {
+                                                        totalNumber += 45;
+                                                      }
+                                                      if (numberB <= 0) {
+                                                        totalNumber = 0;
+                                                      }
+                                                      setState(() {});
+                                                    },backgroundColor: Colors.white,
+
+                                                    child: const Icon(
+                                                      Icons.add,
+                                                      size: 17,
+                                                      color: Colors.black87,
+                                                    ),),
+                                                ),
+                                              ],
+                                            ),
+                                            Positioned(
+                                                left: 215,
+                                                top: 10,
+                                                child: Container(
+                                                    width: 40,
+                                                    height: 25,
+                                                    color: Colors.grey[50],
+                                                    child: Text(
+                                                      '45\$',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleLarge,
+                                                    ))),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    /// Panjabi Container
+                                    Positioned(
+                                      left: 72,
+                                      child: Container(
+                                        ///Yeallow container
+                                        width: 255,
+                                        height: 50,
+                                        color: Colors.white,
+                                        child: Stack(
+                                          children: [
+                                            Text(
+                                              'Panjabi',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                            Positioned(
+                                                top: 30,
+                                                child: RichText(
+                                                  text: TextSpan(children: [
+                                                    const TextSpan(
+                                                        text: 'Color:',
+                                                        style: TextStyle(
+                                                            color: Colors.black45)),
+                                                    TextSpan(
+                                                        text: ' ${colorList[1]}',
+                                                        style: const TextStyle(
+                                                            color: Colors.black87))
+                                                  ]),
+                                                )),
+                                            Positioned(
+                                                top: 30,
+                                                left: 110,
+                                                child: RichText(
+                                                  text: TextSpan(children: [
+                                                    const TextSpan(
+                                                        text: 'Size:',
+                                                        style: TextStyle(
+                                                            color: Colors.black45)),
+                                                    TextSpan(
+                                                        text: '${sizeList[1]}',
+                                                        style: TextStyle(
+                                                            color: Colors.black87))
+                                                  ]),
+                                                )),
+                                            const Positioned(
+                                                left: 226,
+                                                top: 10,
+                                                child: Icon(Icons.more_vert_outlined))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
+                        /// sizeBox of 3rd Card
+                        SizedBox(
+                            height: 104,
+                            width: 343,
+                            child: Card(
+                              elevation: 8,
+                              child: Stack(
+                                children: [
+                                  SizedBox(
+                                    height: 96,
+                                    width: 80,
+                                    child: FittedBox(
+                                      fit: BoxFit.fill,
+                                      child: Image.network(
+                                          'https://believerssign.com/wp-content/uploads/2023/03/Kaftan-1.jpg'),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    ///Teal container
+                                    top: 50,
+                                    left: 72,
+                                    child: Container(
+                                      width: 255,
+                                      height: 50,
+                                      color: Colors.grey[50],
+                                      child: Stack(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(4.0),
+                                                child: FloatingActionButton(
+                                                  onPressed: () {
+                                                    numberC--;
+                                                    if (numberC - 1 >= 0 &&
+                                                        numberC - 1 <= 100) {
+                                                      totalNumber -= 80;
+                                                    } else {
+                                                      totalNumber = 0;
+                                                    }
+                                                    setState(() {});
+                                                  },backgroundColor: Colors.white,
+                                                  child: const Icon(
+                                                    Icons.remove,
+                                                    size: 15,
+                                                    color: Colors.black87,
+                                                  ),),
+                                              ),
+                                              Text(
+                                                ' $numberC ',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(4.0),
+                                                child: FloatingActionButton(
+                                                  onPressed: () {
+                                                    numberC += 1;  /// eta majher counting er jonno , ar if er ta condition er jonno
+                                                    if (numberC + 1 >= 0 &&      ///Ekhane NumberC ++ dele counting 2 kore increase hoy, but number +1 dele 1 kore bare.
+                                                        numberC + 1 <= 100) {
+                                                      totalNumber += 80;
+                                                    }
+                                                    if (numberC <= 0) {
+                                                      totalNumber = 0;
+                                                    }
+                                                    setState(() {});
+                                                  },backgroundColor: Colors.white,
+
+                                                  child: const Icon(
+                                                    Icons.add,
+                                                    size: 17,
+                                                    color: Colors.black87,
+                                                  ),),
+                                              ),
+                                            ],
+                                          ),
+                                          Positioned(
+                                              left: 215,
+                                              top: 10,
+                                              child: Container(
+                                                  width: 40,
+                                                  height: 25,
+                                                  color: Colors.grey[50],
+                                                  child: Text(
+                                                    '80\$',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .titleLarge,
+                                                  ))),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  /// Kaftan Borka
+                                  Positioned(
+                                    left: 72,
+                                    child: Container(
+                                      ///Yeallow container
+                                      width: 255,
+                                      height: 50,
+                                      color: Colors.white,
+                                      child: Stack(
+                                        children: [
+                                          Text(
+                                            'Kaftan Borka',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge,
+                                          ),
+                                          Positioned(
+                                              top: 30,
+                                              child: RichText(
+                                                text: TextSpan(children: [
+                                                  const TextSpan(
+                                                      text: 'Color:',
+                                                      style: TextStyle(
+                                                          color: Colors.black45)),
+                                                  TextSpan(
+                                                      text: colorList[2],
+                                                      style: const TextStyle(
+                                                          color: Colors.black87))
+                                                ]),
+                                              )),
+                                          Positioned(
+                                              top: 30,
+                                              left: 110,
+                                              child: RichText(
+                                                text: TextSpan(children: [
+                                                  const TextSpan(
+                                                      text: 'Size:',
+                                                      style: TextStyle(
+                                                          color: Colors.black45)),
+                                                  TextSpan(
+                                                      text: sizeList[2],
+                                                      style: const TextStyle(
+                                                          color: Colors.black87))
+                                                ]),
+                                              )),
+                                          const Positioned(
+                                              left: 226,
+                                              top: 10,
+                                              child: Icon(Icons.more_vert_outlined)),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Flexible(child /// Size box ke Flexible korle seta screen size kome gele box er size o chepe jay
+                : SizedBox(width: 10,)), ///gape area to amount area
+
+            /// Search,Mybag,TotalAmount,Checkout => Lanscape
+            Column(
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    FractionallySizedBox(child: SizedBox(width: 260,)),
+                    Icon(Icons.search_sharp,size: 30,),
+                  ],
+                ),
+                SizedBox(
+                  width: 303,
+                    child: Text('My Bag',textAlign: TextAlign.start,style: Theme.of(context).textTheme.headlineLarge,)),
+                 const Flexible(child: SizedBox(height: 150,)),
+                Row(
+                  children: [
+                    Text('Total Amount:',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
+                    SizedBox(width: 150,),
+                    Text('$totalNumber\$',style: Theme.of(context).textTheme.titleLarge,),
+                  ],
+                ),
+                SizedBox(
+                  width: 305,
+                  height: 105,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 50,top: 10),
+                      child: ElevatedButton(onPressed: (){
+                        const snackBar=SnackBar(content: Text('Congratulations !'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),backgroundColor: Color(0xFFDB3032)),
+                          child: const Text('CHECK OUT')),
+                    )),
+              ],
+            ),
+          ],
+        ),
+      ),
+      ),
+    );
+  }
+}
